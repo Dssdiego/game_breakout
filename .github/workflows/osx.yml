@@ -1,14 +1,16 @@
-name: windows
+name: linux
 
 on: [push]
 
 jobs:
-  windows-build:
-    runs-on: windows-latest
+  ubuntu-build:
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2.0.0
-      - name: Build Project
+      - name: Download and Install SDL2
+        run: brew install sdl2
+      - name: Build project
         uses: nicledomaS/cmake_build_action@v1.3
         with:
           submodule_update: ON
