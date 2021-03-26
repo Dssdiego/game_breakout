@@ -2,7 +2,9 @@
 
 #include <SDL.h>
 #include <iostream>
+#ifdef _WIN32
 #include <glew.h>
+#endif
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
@@ -44,9 +46,11 @@ int main()
     SDL_GL_MakeCurrent(window, glContext);
 
     // GLEW init
+#ifdef _WIN32
     GLenum glewError = glewInit();
-    if(glewError != GLEW_OK )
+    if(glewError != GLEW_OK)
         std::cout << "Error initializing GLEW!" << std::endl;
+#endif
 
     // Window loop
     while(!closeWindow) {
