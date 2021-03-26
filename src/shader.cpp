@@ -19,12 +19,12 @@ Shader &Shader::Use()
     return *this;
 }
 
-//void Shader::SetFloat(const char *name, float value, bool useShader)
-//{
-//    if (useShader)
-//    {
-//        this->Use();
-//    }
-//    glUniform1i(glGetUniformLocation(this->Id, name), value);
-//}
+void Shader::SetFloat(const char *name, float value, bool useShader)
+{
+    if (useShader)
+    {
+        this->Use();
+    }
+    glUniform1i(glGetUniformLocation(this->Id, name), value);
+}
 

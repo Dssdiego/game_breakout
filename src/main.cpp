@@ -85,9 +85,9 @@ int main()
     return EXIT_SUCCESS;
 }
 
-//#ifdef _WIN32
-//int WinMain()
-//{
-//    main();
-//}
-//#endif
+#ifdef _WIN32
+void WinMain()
+{
+    main();
+}
+#endif
