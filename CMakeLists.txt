@@ -26,6 +26,16 @@ if(WIN32)
             "${CMAKE_SOURCE_DIR}/libs/SDL2_image/lib/x64/SDL2_image.dll"
             "${CMAKE_SOURCE_DIR}/libs/SDL2_image/lib/x64/zlib1.dll"
             DESTINATION ${CMAKE_BINARY_DIR})
+
+    set(GLEW_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/libs/glew/include/GL")
+    set(GLEW_LIBRARY "${CMAKE_SOURCE_DIR}/libs/glew/lib/Release/x64/glew32.lib")
+    file(COPY
+            "${CMAKE_SOURCE_DIR}/libs/glew/bin/Release/x64/glew32.dll"
+            DESTINATION ${CMAKE_BINARY_DIR})
+
+    # glew library
+#    include_directories(libs/glew/include/GL)
+#    link_directories(libs/glew/lib)
 else()
     # let FindSDL2.cmake figure out where it is on Mac/Linux
     # Put the FindSDL2.cmake in ./cmake and tell CMake to find it there
@@ -40,7 +50,8 @@ endif()
 
 # include SDL header files
 include_directories(${SDL2_INCLUDE_DIR}
-                    ${SDL2_IMAGE_INCLUDE_DIR})
+                    ${SDL2_IMAGE_INCLUDE_DIR}
+                    ${GLEW_INCLUDE_DIR})
 
 # load source and header files
 file(GLOB SOURCE_FILES "src/*.h" "src/*.cpp")
@@ -61,4 +72,5 @@ include_directories(libs/glm)
 target_link_libraries(${PROJECT_NAME}
         ${SDL2MAIN_LIBRARY}
         ${SDL2_LIBRARY}
-        ${SDL2_IMAGE_LIBRARIES})
+        ${SDL2_IMAGE_LIBRARIES}
+        ${GLEW_LIBRARY})

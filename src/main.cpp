@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <iostream>
+#include <glew.h>
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
@@ -10,7 +11,6 @@ bool closeWindow = false;
 SDL_Window *window;
 SDL_GLContext glContext;
 
-//int main(int arc, char ** argv)
 int main()
 {
     // Init SDL
@@ -42,6 +42,11 @@ int main()
 
     // Window current context
     SDL_GL_MakeCurrent(window, glContext);
+
+    // GLEW init
+    GLenum glewError = glewInit();
+    if(glewError != GLEW_OK )
+        std::cout << "Error initializing GLEW!" << std::endl;
 
     // Window loop
     while(!closeWindow) {
@@ -76,9 +81,9 @@ int main()
     return EXIT_SUCCESS;
 }
 
-#ifdef _WIN32
-void WinMain()
-{
-    main();
-}
-#endif
+//#ifdef _WIN32
+//int WinMain()
+//{
+//    main();
+//}
+//#endif
