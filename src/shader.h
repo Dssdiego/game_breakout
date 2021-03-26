@@ -6,6 +6,7 @@
 #define BREAKOUT_SHADER_H
 
 #include <string>
+#include <glm/glm.hpp>
 
 class Shader
 {
@@ -24,7 +25,7 @@ public:
     void setFloat(const char *name, float value, bool useShader = false);
     void setInteger(const char *name, int value, bool useShader = false);
     void setVector2f(const char *name, float x, float y, bool useShader = false);
-//    void setVector2f(const char *name, glm::vec2 &value, bool useShader = false);
+    void setVector2f(const char *name, glm::vec2 &value, bool useShader = false);
 
 private:
     // Checks if compilation or linking failed and if so, print the error logs

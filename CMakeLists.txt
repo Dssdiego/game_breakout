@@ -46,6 +46,9 @@ include_directories(${SDL2_INCLUDE_DIR}
 file(GLOB SOURCE_FILES "src/*.h" "src/*.cpp")
 add_executable(${PROJECT_NAME} WIN32 ${SOURCE_FILES})
 
+# include glm library
+include_directories(libs/glm)
+
 # make assets directory in build
 #file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/assets)
 

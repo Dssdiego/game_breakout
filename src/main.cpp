@@ -77,7 +77,7 @@ int main()
 }
 
 #ifdef _WIN32
-int WinMain()
+void WinMain()
 {
     main();
 }
