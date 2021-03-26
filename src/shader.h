@@ -8,6 +8,14 @@
 #include <string>
 #include <glm/glm.hpp>
 
+enum ShaderObjectType
+{
+    Vertex,
+    Fragment,
+    Geometry,
+    Program
+};
+
 class Shader
 {
 public:
@@ -19,7 +27,7 @@ public:
     Shader &Use();
 
     // Compiles the shader from a given source code
-    void Compile(const char *source);
+    void Compile(std::vector<std::string> &source);
 
     // Utility functions
     void SetFloat(const char *name, float value, bool useShader = false);
@@ -33,7 +41,7 @@ public:
     void SetMatrix4(const char *name, glm::mat4 &matrix, bool useShader = false);
 private:
     // Checks if compilation or linking failed and if so, print the error logs
-    void checkCompileErrors(unsigned int object, std::string type);
+    void checkCompileErrors(unsigned int object, ShaderObjectType type);
 };
 
 #endif //BREAKOUT_SHADER_H
