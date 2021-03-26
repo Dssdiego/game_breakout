@@ -9,5 +9,5 @@ Enjoy ;)
 ## Roadmap
 
 - [X] Run on Mac OS X
-- [ ] Run on Windows 10
+- [X] Run on Windows 10
 - [ ] Run on Linux

@@ -1,3 +1,5 @@
+#define SDL_MAIN_HANDLED
+
 #include <SDL.h>
 #include <iostream>
 
@@ -8,6 +10,7 @@ bool closeWindow = false;
 SDL_Window *window;
 SDL_GLContext glContext;
 
+//int main(int arc, char ** argv)
 int main()
 {
     // Init SDL
@@ -72,3 +75,10 @@ int main()
     // Closes the application
     return EXIT_SUCCESS;
 }
+
+#ifdef _WIN32
+int WinMain()
+{
+    main();
+}
+#endif
