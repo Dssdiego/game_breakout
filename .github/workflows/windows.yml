@@ -6,11 +6,11 @@ jobs:
   windows-build:
     runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2.0.0
-      - name: Build Project
-        uses: nicledomaS/cmake_build_action@v1.3
-        with:
-          submodule_update: ON
-          run_tests: ON
-          unit_test_build: -Dtest=ON
+    - name: Checkout
+      uses: actions/checkout@v2.0.0
+    - name: Build Project
+      uses: nicledomaS/cmake_build_action@v1.3
+      with:
+        submodule_update: ON
+        run_tests: ON
+        unit_test_build: -Dtest=ON
