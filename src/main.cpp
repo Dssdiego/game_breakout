@@ -62,7 +62,17 @@ int main()
 #endif
 
     // OpenGL configuration
-    glViewport(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+    // Print versions
+    SDL_version sdlVersion;
+    SDL_GetVersion(&sdlVersion);
+    std::cout << "SDL Version: " << unsigned(sdlVersion.major) << "." << unsigned(sdlVersion.minor) << "."
+              << unsigned(sdlVersion.patch)
+              << std::endl;
+
+    std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
+    std::cout << "GLSL Version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
 
     // Init game
     game.init();
