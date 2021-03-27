@@ -1,15 +1,17 @@
+#define GL_GLEXT_PROTOTYPES
+#define GL_SILENCE_DEPRECATION
 #define SDL_MAIN_HANDLED
-
-#include <SDL.h>
-#include <iostream>
-#include "game.h"
-#include "resource_manager.h"
 
 #ifdef _WIN32
 #include <glew.h>
 #else
 #include <SDL_opengl.h>
 #endif
+
+#include <SDL.h>
+#include <iostream>
+#include "game.h"
+#include "resource_manager.h"
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
