@@ -30,11 +30,12 @@ void Shader::SetFloat(const char *name, float value, bool useShader)
     glUniform1f(glGetUniformLocation(this->Id, name), value);
 }
 
-void Shader::SetInteger(const char *name, int value, bool useShader)
+Shader &Shader::SetInteger(const char *name, int value, bool useShader)
 {
     if (useShader)
         this->Use();
     glUniform1i(glGetUniformLocation(this->Id, name), value);
+    return *this;
 }
 
 void Shader::SetVector2f(const char *name, float x, float y, bool useShader)

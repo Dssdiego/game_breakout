@@ -31,7 +31,7 @@ public:
 
     // Utility functions
     void SetFloat(const char *name, float value, bool useShader = false);
-    void SetInteger(const char *name, int value, bool useShader = false);
+    Shader &SetInteger(const char *name, int value, bool useShader = false);
     void SetVector2f(const char *name, float x, float y, bool useShader = false);
     void SetVector2f(const char *name, glm::vec2 &value, bool useShader = false);
     void SetVector3f(const char *name, float x, float y, float z, bool useShader = false);
