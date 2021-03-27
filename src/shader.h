@@ -7,6 +7,7 @@
 
 #include <string>
 #include <glm/glm.hpp>
+#include <vector>
 
 enum ShaderObjectType
 {
