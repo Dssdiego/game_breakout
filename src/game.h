@@ -16,7 +16,7 @@ class Game
 {
 public:
     GameState state;
-    bool keys[1024];
+    bool keys[512]; // SDL has 512 scancode keys (see at "SDL_keycode.h")
     unsigned int width, height;
 
     Game(unsigned int width, unsigned int height);
@@ -24,7 +24,7 @@ public:
 
     void init();
     void processInput(float deltaTime);
-    void update();
+    void update(float deltaTime);
     void render();
 };
 

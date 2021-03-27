@@ -2,8 +2,13 @@
 
 #include <SDL.h>
 #include <iostream>
+#include "game.h"
+#include "resource_manager.h"
+
 #ifdef _WIN32
 #include <glew.h>
+#else
+#include <SDL_opengl.h>
 #endif
 
 const int SCREEN_WIDTH = 800;
@@ -12,6 +17,8 @@ const int SCREEN_HEIGHT = 600;
 bool closeWindow = false;
 SDL_Window *window;
 SDL_GLContext glContext;
+
+Game game(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 int main()
 {
@@ -52,29 +59,62 @@ int main()
         std::cout << "Error initializing GLEW!" << std::endl;
 #endif
 
+    // OpenGL configuration
+    glViewport(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+    // Init game
+    game.init();
+
+    // Delta Time
+    float deltaTime = 0.0f;
+    float lastFrame = 0.0f;
+
     // Window loop
     while(!closeWindow) {
-        SDL_Event event;
+        // Calculate delta time
+        float currentFrame = SDL_GetTicks();
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+
+        // Game input
+        game.processInput(deltaTime);
+
+        // Game update
+        game.update(deltaTime);
+
+        // Game render
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+        game.render();
 
         // Process inputs
+        SDL_Event event;
         while(SDL_PollEvent(&event))
         {
             // Close window when clicking the "X" button
             if (event.type == SDL_QUIT)
-            {
                 closeWindow = true;
-            }
 
             // Close window when pressing escape
             if (event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
-            {
                 closeWindow = true;
+
+            // REVIEW: Might be wrong
+            if (event.key.keysym.scancode >= 0)
+            {
+                if (event.type == SDL_KEYDOWN)
+                    game.keys[event.key.keysym.scancode] = true;
+                else if (event.type == SDL_KEYUP)
+                    game.keys[event.key.keysym.scancode] = false;
             }
         }
 
         // Swap buffers and present to the screen
         SDL_GL_SwapWindow(window);
     }
+
+    // Cleanup resources
+    ResourceManager::Clear();
 
     // Cleanup variables used
     SDL_GL_DeleteContext(glContext);

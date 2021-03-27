@@ -11,3 +11,24 @@ Game::~Game()
 {
 
 }
+
+
+void Game::init()
+{
+
+}
+
+void Game::processInput(float deltaTime)
+{
+
+}
+
+void Game::update(float deltaTime)
+{
+
+}
+
+void Game::render()
+{
+
+}
