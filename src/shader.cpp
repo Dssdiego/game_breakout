@@ -109,7 +109,7 @@ void Shader::Compile(std::vector<std::string> &source)
     checkCompileErrors(fragShader, ShaderObjectType::Fragment);
 
     // Geometry shader
-    if (geomShaderSrc != nullptr)
+    if (geomShaderSrc != nullptr && *geomShaderSrc != '\0')
     {
         geomShader = glCreateShader(GL_GEOMETRY_SHADER);
         glShaderSource(geomShader, 1, &geomShaderSrc, nullptr);
@@ -123,7 +123,7 @@ void Shader::Compile(std::vector<std::string> &source)
 
     glAttachShader(this->Id, vertShader);
     glAttachShader(this->Id, fragShader);
-    if (geomShaderSrc != nullptr)
+    if (geomShaderSrc != nullptr && *geomShaderSrc != '\0')
         glAttachShader(this->Id, geomShader);
 
     glLinkProgram(this->Id);
@@ -134,7 +134,7 @@ void Shader::Compile(std::vector<std::string> &source)
     glDeleteShader(vertShader);
     glDeleteShader(fragShader);
 
-    if (geomShaderSrc != nullptr)
+    if (geomShaderSrc != nullptr && *geomShaderSrc != '\0')
         glDeleteShader(geomShader);
 }
 
@@ -143,7 +143,7 @@ void Shader::checkCompileErrors(unsigned int object, ShaderObjectType type)
     int success;
     char infoLog[1024];
 
-    if (type == Program)
+    if (type != ShaderObjectType::Program)
     {
         glGetShaderiv(object, GL_COMPILE_STATUS, &success);
         if (!success)
