@@ -5,7 +5,9 @@
 #ifdef _WIN32
 #include <glew.h>
 #else
+
 #include <SDL_opengl.h>
+
 #endif
 
 #include <SDL.h>
@@ -29,6 +31,16 @@ int main()
     {
         std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
     }
+
+    // Use the most recent OpenGL Version available in the machine
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+    SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+#ifdef __APPLE__
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+#endif
 
     // Create window
     window = SDL_CreateWindow(
@@ -82,7 +94,8 @@ int main()
     float lastFrame = 0.0f;
 
     // Window loop
-    while(!closeWindow) {
+    while (!closeWindow)
+    {
         // Calculate delta time
         float currentFrame = SDL_GetTicks();
         deltaTime = currentFrame - lastFrame;
@@ -101,7 +114,7 @@ int main()
 
         // Process inputs
         SDL_Event event;
-        while(SDL_PollEvent(&event))
+        while (SDL_PollEvent(&event))
         {
             // Close window when clicking the "X" button
             if (event.type == SDL_QUIT)
