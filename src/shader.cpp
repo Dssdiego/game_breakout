@@ -6,9 +6,7 @@
 #define GL_SILENCE_DEPRECATION
 
 #ifdef _WIN32
-
 #include <glew.h>
-
 #else
 #include <SDL_opengl.h>
 #include <SDL_opengl_glext.h>

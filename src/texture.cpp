@@ -2,12 +2,13 @@
 // Created by Diego Santos Seabra on 26/03/21.
 //
 
+#define GL_GLEXT_PROTOTYPES
+#define GL_SILENCE_DEPRECATION
+
 #ifdef _WIN32
 #include <glew.h>
 #else
-
 #include <SDL_opengl.h>
-
 #endif
 
 #include "texture.h"
