@@ -50,14 +50,15 @@ endif()
 
 # include SDL header files
 include_directories(${SDL2_INCLUDE_DIR}
-                    ${SDL2_IMAGE_INCLUDE_DIR} )
+                    ${SDL2_IMAGE_INCLUDE_DIR})
 
 # load source and header files
 file(GLOB SOURCE_FILES "src/*.h" "src/*.cpp")
 add_executable(${PROJECT_NAME} WIN32 ${SOURCE_FILES})
 
-# include glm library
-include_directories(libs/glm)
+# include libraries
+include_directories(libs/glm
+                    libs/stb)
 
 # make assets directory in build
 #file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/assets)

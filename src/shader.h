@@ -21,7 +21,7 @@ class Shader
 public:
     unsigned int Id;
 
-    Shader();
+    Shader() {}
 
     // Sets the current shader as active
     Shader &Use();
